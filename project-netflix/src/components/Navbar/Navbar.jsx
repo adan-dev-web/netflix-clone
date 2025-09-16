@@ -15,9 +15,10 @@ const Navbar = () => {
           <li>Accueil</li>
           <li>Séries</li>
           <li>Films</li>
-          <li>Nouveautés populaires</li>
+          <li>Jeux</li>
+          <li>Nouveautés les plus regardées</li>
           <li>Ma liste</li>
-          <li>Languages</li>
+          <li>Explorer par langue</li>
         </ul>
       </div>
       <div className="navbar-right">
