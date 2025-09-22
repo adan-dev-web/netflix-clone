@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./Player.css";
 import back_arrow_icon from "../../assets/back_arrow_icon.png";
 import play_icon from "../../assets/play_icon.png";
+import { FaPlus } from "react-icons/fa";
+import { SlLike, SlDislike } from "react-icons/sl";
 
 const Player = () => {
   const { id } = useParams();
@@ -42,9 +44,22 @@ const Player = () => {
   if (!movie) {
     return <div className="player-detail-loading">Chargement...</div>;
   }
-
   return (
     <div className="player-detail-page">
+      {/* Trailer en fond, FIXED */}
+      {trailer && (
+        <div className="player-banner-video-bg">
+          <iframe
+            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&playlist=${trailer.key}&modestbranding=1`}
+            title="trailer-bg"
+            frameBorder="0"
+            allow="autoplay"
+            allowFullScreen
+            tabIndex={-1}
+          ></iframe>
+        </div>
+      )}
+
       <img
         src={back_arrow_icon}
         alt="Retour"
@@ -72,17 +87,20 @@ const Player = () => {
       {/* Bandeau principal */}
       <div className="player-banner">
         <div className="player-banner-bg">
-          <img
-            src={
-              movie.backdrop_path
-                ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-                : movie.poster_path
-                ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                : ""
-            }
-            alt={movie.title}
-            className="player-banner-img"
-          />
+          {/* Affiche l'image SEULEMENT si pas de trailer */}
+          {!trailer && (
+            <img
+              src={
+                movie.backdrop_path
+                  ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+                  : movie.poster_path
+                  ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                  : ""
+              }
+              alt={movie.title}
+              className="player-banner-img"
+            />
+          )}
           <div className="player-banner-overlay"></div>
         </div>
         <div className="player-banner-content">
@@ -109,8 +127,18 @@ const Player = () => {
                 Lecture
               </button>
             )}
-            <button className="player-add-btn">+ Ma liste</button>
-            <button className="player-share-btn">Partager</button>
+            <button
+              className="player-action-btn"
+              aria-label="Ajouter à ma liste"
+            >
+              <FaPlus size={22} />
+            </button>
+            <button className="player-action-btn" aria-label="J'aime">
+              <SlLike size={22} />
+            </button>
+            <button className="player-action-btn" aria-label="Je n'aime pas">
+              <SlDislike size={22} />
+            </button>
           </div>
         </div>
         {movie.poster_path && (
