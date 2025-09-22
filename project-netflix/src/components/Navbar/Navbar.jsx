@@ -7,6 +7,8 @@ import profile_img from "../../assets/profile_img.png";
 import caret_icon from "../../assets/caret_icon.svg";
 import { logout } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { FaUserEdit, FaUserFriends, FaRegUserCircle } from "react-icons/fa";
+import { MdOutlineAccountCircle, MdHelpOutline } from "react-icons/md";
 
 const sections = [
   { label: "Accueil", id: "home-section" },
@@ -18,9 +20,15 @@ const sections = [
   { label: "Explorer par langue", id: "lang-section" },
 ];
 
+const fakeProfiles = [
+  { name: "Lilisette", img: profile_img },
+  { name: "Phénix", img: profile_img },
+];
+
 const Navbar = () => {
   const navRef = useRef();
   const [active, setActive] = useState(sections[0].id);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +38,6 @@ const Navbar = () => {
       } else {
         navRef.current.classList.remove("nav-dark");
       }
-      // Detect active section
       let found = sections[0].id;
       for (const sec of sections) {
         const el = document.getElementById(sec.id);
@@ -73,13 +80,55 @@ const Navbar = () => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/search")}
         />
-        <p>Enfants</p>
         <img src={bell_icon} alt="Icone de notification" className="icons" />
-        <div className="navbar-profile">
+        <div
+          className="navbar-profile"
+          onMouseEnter={() => setMenuOpen(true)}
+          onMouseLeave={() => setMenuOpen(false)}
+        >
           <img src={profile_img} alt="Image de profil" className="profile" />
-          <img src={caret_icon} alt="Icone de flèche" />
-          <div className="dropdown">
-            <p onClick={logout}>Déconnexion</p>
+          <img
+            src={caret_icon}
+            alt="Icone de flèche"
+            className={`caret-icon ${menuOpen ? "open" : ""}`}
+          />
+          <div className={`dropdown${menuOpen ? " open" : ""}`}>
+            {/* Profils fictifs */}
+            <div className="dropdown-profiles">
+              {fakeProfiles.map((profile) => (
+                <div className="dropdown-profile-row" key={profile.name}>
+                  <img
+                    src={profile.img}
+                    alt={profile.name}
+                    className="profile"
+                  />
+                  <span>{profile.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="dropdown-divider" />
+            {/* Liens menu */}
+            <div className="dropdown-menu-item">
+              <FaUserEdit className="dropdown-icon" />
+              <span>Gérer les profils</span>
+            </div>
+            <div className="dropdown-menu-item">
+              <FaUserFriends className="dropdown-icon" />
+              <span>Transférer un profil</span>
+            </div>
+            <div className="dropdown-menu-item">
+              <MdOutlineAccountCircle className="dropdown-icon" />
+              <span>Compte</span>
+            </div>
+            <div className="dropdown-menu-item">
+              <MdHelpOutline className="dropdown-icon" />
+              <span>Centre d'aide</span>
+            </div>
+            <div className="dropdown-divider" />
+            {/* Déconnexion */}
+            <p className="dropdown-logout" onClick={logout}>
+              Se déconnecter
+            </p>
           </div>
         </div>
       </div>

@@ -6,12 +6,19 @@ import Player from "./pages/Player/Player";
 import Search from "./pages/Search/Search";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import { useLoader } from "./components/Loader/LoaderContext";
+import Loader from "./components/Loader/Loader";
+import { useLocation, useNavigationType } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const navigate = useNavigate();
+
+  const { loading, setLoading } = useLoader();
+  const location = useLocation();
+  const navigationType = useNavigationType();
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -25,8 +32,15 @@ const App = () => {
     });
   }, []);
 
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 900); // durée du loader
+    return () => clearTimeout(timeout);
+  }, [location, navigationType, setLoading]);
+
   return (
     <div>
+      {loading && <Loader />}
       <ToastContainer theme="dark" />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -58,19 +58,27 @@
   top: 100%;
   right: 0;
   width: max-content;
-  background: #191919;
-  padding: 18px 22px;
+  background: rgba(25, 25, 25, 0.85);
+  padding: 12px 16px;
   border-radius: 2px;
-  text-decoration: underline;
+  text-align: left;
   z-index: 1;
-  display: none;
-}
-.navbar .dropdown p {
-  font-size: 13px;
-  cursor: pointer;
-}
-.navbar-profile:hover .dropdown {
   display: block;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
+  font-size: 13px;
+  min-width: 180px;
+}
+.navbar-profile:hover .dropdown,
+.navbar-profile.menu-open .dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
 }
 
 .nav-dark {
@@ -87,6 +95,11 @@
   .navbar-left img {
     height: 25px;
   }
+  .navbar .dropdown {
+    min-width: 140px;
+    font-size: 12px;
+    padding: 10px 8px;
+  }
 }
 @media (max-width: 500px) {
   .navbar img {
@@ -95,4 +108,87 @@
   .navbar-right {
     gap: 10px;
   }
+}
+
+.dropdown-profiles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  margin-left: -8px; /* décale les profils à gauche */
+}
+.dropdown-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 2px 4px; /* décale un peu à gauche */
+}
+.dropdown-profile-row .profile {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Ligne de séparation subtile */
+.dropdown-divider {
+  border-bottom: 1px solid #444;
+  margin: 8px 0 4px 0; /* réduit l'écart sous la séparation */
+  opacity: 0.5;
+}
+
+/* Menu items */
+.dropdown-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0 6px 0;
+  cursor: pointer;
+  color: #e5e5e5;
+  font-size: 13px;
+  transition: color 0.15s;
+}
+.dropdown-menu-item:hover {
+  color: #fff;
+}
+.dropdown-icon {
+  font-size: 24px;
+  color: #b3b3b3;
+  min-width: 20px;
+}
+
+/* Déconnexion */
+.dropdown-logout {
+  color: #e5e5e5;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 4px; /* réduit l'écart au-dessus du bouton */
+  padding: 6px 0 0 0;
+  transition: color 0.15s, text-decoration 0.15s;
+  text-align: center;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+}
+.dropdown-logout:hover {
+  color: #fff;
+  text-decoration: underline; /* souligné seulement au hover */
+}
+
+.dropdown-menu-item,
+.dropdown-profile-row {
+  text-decoration: none; /* pas de soulignement par défaut */
+}
+
+.dropdown-menu-item:hover,
+.dropdown-profile-row:hover {
+  color: #fff;
+  text-decoration: underline; /* souligné seulement au hover */
+}
+
+.caret-icon {
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.caret-icon.open {
+  transform: rotate(180deg);
 }
