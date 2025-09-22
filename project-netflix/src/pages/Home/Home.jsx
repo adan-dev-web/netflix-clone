@@ -10,9 +10,9 @@ import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="home" id="home-section">
       <Navbar />
-      <div className="hero">
+      <div className="hero" id="series-section">
         <img src={hero_banner} alt="Hero" className="banner-img" />
         <div className="hero-caption">
           <img src={hero_title} alt="Hero" className="caption-img" />
@@ -35,10 +35,22 @@ const Home = () => {
         </div>
       </div>
       <div className="more-cards">
-        <TitleCards title={"Films à succés"} category={"top_rated"} />
-        <TitleCards title={"Seulement sur Netflix"} category={"popular"} />
-        <TitleCards title={"À venir"} category={"upcoming"} />
-        <TitleCards title={"Séléctionnés pour toi"} category={"now_playing"} />
+        <div id="films-section">
+          <TitleCards title={"Films à succés"} category={"top_rated"} />
+        </div>
+        <div id="jeux-section">
+          <TitleCards title={"Seulement sur Netflix"} category={"popular"} />
+        </div>
+        <div id="top-section">
+          <TitleCards title={"À venir"} category={"upcoming"} />
+        </div>
+        <div id="list-section">
+          <TitleCards
+            title={"Séléctionnés pour toi"}
+            category={"now_playing"}
+          />
+        </div>
+        <div id="lang-section"></div>
       </div>
       <Footer />
     </div>
