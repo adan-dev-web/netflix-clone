@@ -69,17 +69,20 @@ const Player = () => {
 
       {/* Modal trailer */}
       {showTrailer && trailer && (
-        <div
-          className="player-trailer-modal"
-          onClick={() => setShowTrailer(false)}
-        >
-          <div className="player-trailer-modal-bg" />
+        <div className="player-trailer-modal">
+          <img
+            src={back_arrow_icon}
+            alt="Retour"
+            className="player-trailer-back-arrow"
+            onClick={() => setShowTrailer(false)}
+          />
           <iframe
             src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0&controls=1`}
             title="trailer"
             frameBorder="0"
             allowFullScreen
             allow="autoplay"
+            className="player-trailer-iframe"
           ></iframe>
         </div>
       )}
