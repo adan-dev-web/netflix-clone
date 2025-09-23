@@ -34,7 +34,7 @@ const App = () => {
 
   useEffect(() => {
     setLoading(true);
-    const timeout = setTimeout(() => setLoading(false), 900); // durée du loader
+    const timeout = setTimeout(() => setLoading(false), 99900);
     return () => clearTimeout(timeout);
   }, [location, navigationType, setLoading]);
 

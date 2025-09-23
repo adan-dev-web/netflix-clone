@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../assets/logo.png";
 import { signup, login } from "../../firebase";
-import netflix_spinner from "../../assets/netflix_spinner.gif";
 
 const Login = () => {
   const [signState, setSignState] = useState("Connexion");
@@ -22,11 +21,9 @@ const Login = () => {
     setLoading(false);
   };
 
-  return loading ? (
-    <div className="login-spinner">
-      <img src={netflix_spinner} alt="Loading..." />
-    </div>
-  ) : (
+  if (loading) return null;
+
+  return (
     <div className="login">
       <img src={logo} className="login-logo" alt="Logo" />
       <div className="login-form">

@@ -46,9 +46,9 @@
   height: 100%; /* Prend toute la hauteur */
   background: linear-gradient(
     90deg,
-    #181818 0%,
-    #181818ee 40%,
-    #18181888 60%,
+    #0f0f0f 0%,
+    #0f0f0fee 40%,
+    #0f0f0f88 60%,
     transparent 100%
   );
   z-index: 2;
@@ -86,9 +86,9 @@
   z-index: 2;
   background: linear-gradient(
     to right,
-    #181818 0%,
-    #181818ee 40%,
-    #18181888 60%,
+    #0f0f0f 0%,
+    #0f0f0fee 40%,
+    #0f0f0f88 60%,
     transparent 100%
   );
   pointer-events: none;
