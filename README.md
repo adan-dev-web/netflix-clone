@@ -35,15 +35,7 @@
       </ul>
     </li>
     <li><a href="#">À Propos</a></li>
-    <li><a href="#">Initiation</a></li>
-    <li><a href="#">Prérequis</a></li>
-    <li>
-      <a href="#">L'installer</a>
-      <ul>
-        <li><a href="#">Commandes</a></li>
-        <li><a href="#">Prise en main</a></li>
-      </ul>
-    </li>
+    <li><a href="#">Outils</a></li>
     <li><a href="#">Utilisation</a></li>
     <li><a href="#">Arborescence</a></li>
     <li><a href="#">Contributeur</a></li>
