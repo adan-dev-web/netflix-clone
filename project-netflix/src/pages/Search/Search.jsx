@@ -31,7 +31,7 @@ const Search = () => {
           setTimeout(() => {
             setResults(res.results || []);
             setShowResults(true);
-          }, 100); // petit délai pour l'animation
+          }, 100);
         });
     } else {
       setShowResults(false);
