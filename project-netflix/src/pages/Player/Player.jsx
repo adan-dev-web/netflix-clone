@@ -12,14 +12,11 @@ const Player = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // --- 1. Cas Stranger Things ---
   if (id === "stranger-things") {
-    // Récupère les données depuis le state OU le fichier local (pour le refresh)
     const stranger = location.state?.stranger || strangerThingsData;
     const trailerOnly =
       location.state?.trailerOnly || location.search.includes("trailerOnly=1");
 
-    // Si les données sont absentes, affiche un message d'erreur
     if (!stranger || !stranger.trailerKey) {
       return (
         <div style={{ color: "white", padding: "2rem" }}>
@@ -28,7 +25,6 @@ const Player = () => {
       );
     }
 
-    // --- a. Mode trailer plein écran ---
     if (trailerOnly) {
       return (
         <div className="player-trailer">
@@ -50,7 +46,6 @@ const Player = () => {
       );
     }
 
-    // --- b. Page détail Stranger Things ---
     return (
       <div className="player-detail-page">
         <div className="player-banner-video-bg">
@@ -70,14 +65,7 @@ const Player = () => {
           onClick={() => navigate(-1)}
         />
         <div className="player-banner">
-          <div className="player-banner-bg">
-            <img
-              src={stranger.backdrop}
-              alt={stranger.title}
-              className="player-banner-img"
-            />
-            <div className="player-banner-overlay"></div>
-          </div>
+          <div className="player-banner-bg"></div>
           <div className="player-banner-content">
             <h1 className="player-detail-title">{stranger.title}</h1>
             <div className="player-detail-meta">
@@ -117,7 +105,7 @@ const Player = () => {
           </div>
           <img
             className="player-detail-poster"
-            src={stranger.poster}
+            src="/src/assets/strangerthingsposter.jpg"
             alt={stranger.title}
           />
         </div>
@@ -125,7 +113,6 @@ const Player = () => {
     );
   }
 
-  // --- 2. Cas général (autres films/séries) ---
   const [movie, setMovie] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
@@ -187,7 +174,6 @@ const Player = () => {
       {/* Bandeau principal */}
       <div className="player-banner">
         <div className="player-banner-bg">
-          {/* Affiche l'image SEULEMENT si pas de trailer ET qu'il y a un src valide */}
           {!trailer && movie && (movie.backdrop_path || movie.poster_path) && (
             <img
               src={
@@ -241,7 +227,6 @@ const Player = () => {
             </button>
           </div>
         </div>
-        {/* Et pour l'affiche à droite */}
         {movie && movie.poster_path && (
           <img
             className="player-detail-poster"
