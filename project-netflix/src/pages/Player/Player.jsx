@@ -5,6 +5,7 @@ import play_icon from "../../assets/play_icon.png";
 import { FaPlus } from "react-icons/fa";
 import { SlLike, SlDislike } from "react-icons/sl";
 import strangerThingsData from "../../components/StrangerThings/StrangerThingsData";
+import "./Player.css";
 
 const Player = () => {
   const { id } = useParams();
