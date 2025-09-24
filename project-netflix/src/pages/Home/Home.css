@@ -6,6 +6,18 @@
   width: 100%;
   mask-image: linear-gradient(to right, transparent, black 75%);
   -webkit-mask-image: linear-gradient(to right, transparent, black 75%);
+  display: block;
+}
+
+.hero-banner-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent 0%, #0c0c0c 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .hero-caption {
@@ -13,12 +25,7 @@
   width: 100%;
   padding-left: 6%;
   bottom: 0;
-}
-
-.caption-img {
-  width: 90%;
-  max-width: 420px;
-  margin-bottom: 30px;
+  z-index: 3;
 }
 
 .hero-caption p {
@@ -66,6 +73,14 @@
   padding-left: 6%;
 }
 
+.caption-img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 18px;
+}
+
 @media (max-width: 1024px) {
   .hero-caption .title-cards {
     display: none;
@@ -75,8 +90,22 @@
   }
 }
 @media (max-width: 800px) {
+  .navbar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 10000;
+  }
+  .hero {
+    padding-top: 75px;
+    max-height: 650px;
+  }
   .hero-caption {
+    position: relative;
     padding-left: 4%;
+    padding-top: 0;
+    bottom: 6.5rem;
   }
   .caption-img {
     margin-bottom: 10px;
@@ -89,12 +118,19 @@
   .hero-caption .btn img {
     width: 20px;
   }
-  .nore-cards {
+  .more-cards {
     padding-left: 4%;
   }
 }
 
 @media (max-width: 500px) {
+  .hero {
+    padding-top: 60px;
+    max-height: 400px;
+  }
+  .hero-caption {
+    z-index: 0;
+  }
   .caption-img {
     display: none;
   }

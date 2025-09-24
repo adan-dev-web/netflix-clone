@@ -27,6 +27,7 @@ const Home = () => {
       <Navbar />
       <div className="hero" id="series-section">
         <img src={hero_banner} alt="Hero" className="banner-img" />
+        <div className="hero-banner-gradient"></div>
         <div className="hero-caption">
           <img src={hero_title} alt="Hero" className="caption-img" />
           <p className="caption-text">

@@ -11,7 +11,7 @@
     rgba(0, 0, 0, 0.7) 10%,
     transparent
   );
-  z-index: 1;
+  z-index: 10000;
 }
 
 .navbar-left {
@@ -102,6 +102,9 @@
   }
 }
 @media (max-width: 500px) {
+  .navbar {
+    z-index: 1;
+  }
   .navbar img {
     height: 20px;
   }
@@ -115,13 +118,13 @@
   flex-direction: column;
   gap: 6px;
   margin-bottom: 8px;
-  margin-left: -8px; /* décale les profils à gauche */
+  margin-left: -8px;
 }
 .dropdown-profile-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 2px 0 2px 4px; /* décale un peu à gauche */
+  padding: 2px 0 2px 4px;
 }
 .dropdown-profile-row .profile {
   width: 26px;
@@ -130,14 +133,12 @@
   object-fit: cover;
 }
 
-/* Ligne de séparation subtile */
 .dropdown-divider {
   border-bottom: 1px solid #444;
-  margin: 8px 0 4px 0; /* réduit l'écart sous la séparation */
+  margin: 8px 0 4px 0;
   opacity: 0.5;
 }
 
-/* Menu items */
 .dropdown-menu-item {
   display: flex;
   align-items: center;
@@ -157,12 +158,11 @@
   min-width: 20px;
 }
 
-/* Déconnexion */
 .dropdown-logout {
   color: #e5e5e5;
   font-size: 13px;
   cursor: pointer;
-  margin-top: 4px; /* réduit l'écart au-dessus du bouton */
+  margin-top: 4px;
   padding: 6px 0 0 0;
   transition: color 0.15s, text-decoration 0.15s;
   text-align: center;
@@ -172,18 +172,18 @@
 }
 .dropdown-logout:hover {
   color: #fff;
-  text-decoration: underline; /* souligné seulement au hover */
+  text-decoration: underline;
 }
 
 .dropdown-menu-item,
 .dropdown-profile-row {
-  text-decoration: none; /* pas de soulignement par défaut */
+  text-decoration: none;
 }
 
 .dropdown-menu-item:hover,
 .dropdown-profile-row:hover {
   color: #fff;
-  text-decoration: underline; /* souligné seulement au hover */
+  text-decoration: underline;
 }
 
 .caret-icon {
