@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="#">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Logo" width="80" height="80">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Logo" width="500" height="250">
   </a>
 
   <h3 align="center">Netflix - Clone</h3>
