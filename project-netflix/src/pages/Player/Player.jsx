@@ -12,6 +12,7 @@ const Player = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // --- 1. Cas Stranger Things ---
   if (id === "stranger-things") {
     const stranger = location.state?.stranger || strangerThingsData;
     const trailerOnly =
@@ -113,6 +114,7 @@ const Player = () => {
     );
   }
 
+  // --- 2. Cas général (autres films/séries) ---
   const [movie, setMovie] = useState(null);
   const [trailer, setTrailer] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
@@ -121,13 +123,52 @@ const Player = () => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: "Bearer ...",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNDI5MzJhOTRjMTk2YTFkYTc0ZTE0ZDEyMjQxYTNkYyIsIm5iZiI6MTc1ODE4ODU4NC4xMDYsInN1YiI6IjY4Y2JkNDI4MGVlNWYxZDRlNTA3Mzk1NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3KR2_VtkIXzEHswWm4bQbw_2q2WMM5cA0glGrrKu7-I",
     },
   };
+
+  useEffect(() => {
+    if (!id || id === "stranger-things") return;
+
+    fetch(`https://api.themoviedb.org/3/movie/${id}?language=fr-FR`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data || data.status_code) {
+          setMovie(null);
+        } else {
+          setMovie(data);
+        }
+      });
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=fr-FR`,
+      options
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        const yt = res.results?.find(
+          (v) => v.site === "YouTube" && v.type === "Trailer"
+        );
+        setTrailer(yt);
+      });
+  }, [id]);
 
   if (!movie) {
     return <div className="player-detail-loading">Chargement...</div>;
   }
+
+  if (movie === null) {
+    return (
+      <div
+        className="player-detail-loading"
+        style={{ color: "white", padding: "2rem" }}
+      >
+        Film ou série introuvable.
+      </div>
+    );
+  }
+
   return (
     <div className="player-detail-page">
       {/* Trailer en fond, FIXED */}
