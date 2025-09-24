@@ -24,6 +24,9 @@
 .hero-caption p {
   max-width: 700px;
   font-size: 17px;
+}
+
+.caption-text {
   margin-bottom: 20px;
 }
 

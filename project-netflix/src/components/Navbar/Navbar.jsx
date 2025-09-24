@@ -4,6 +4,8 @@ import logo from "../../assets/logo.png";
 import search_icon from "../../assets/search_icon.svg";
 import bell_icon from "../../assets/bell_icon.svg";
 import profile_img from "../../assets/profile_img.png";
+import profile_nancy from "../../assets/nancy.jpg";
+import profile_raiponce from "../../assets/raiponce.jpg";
 import caret_icon from "../../assets/caret_icon.svg";
 import { logout } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -21,8 +23,8 @@ const sections = [
 ];
 
 const fakeProfiles = [
-  { name: "Lilisette", img: profile_img },
-  { name: "Phénix", img: profile_img },
+  { name: "Lilisette", img: profile_nancy },
+  { name: "Phénix", img: profile_raiponce },
 ];
 
 const Navbar = () => {
@@ -65,7 +67,9 @@ const Navbar = () => {
             <li
               key={sec.id}
               onClick={() => handleNavClick(sec.id)}
-              style={{ fontWeight: active === sec.id ? "bold" : "normal" }}
+              style={{
+                fontWeight: sec.label === "Accueil" ? "bold" : "normal",
+              }}
             >
               {sec.label}
             </li>
